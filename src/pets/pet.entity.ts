@@ -17,7 +17,7 @@ export class Pet {
   @Field({ nullable: true })
   type?: string;
 
-  @ManyToMany(() => Owner, (owner) => owner.pets)
+  @ManyToMany(() => Owner, (owner) => owner.pets, { cascade: true })
   @Field(() => Owner)
   owner: Owner;
 

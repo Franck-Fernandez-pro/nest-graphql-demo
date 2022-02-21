@@ -31,7 +31,7 @@ export class OwnersResolver {
   }
 
   @Mutation(() => Owner)
-  removeOwner(@Args('id', { type: () => Int }) id: number) {
+  removeOwner(@Args('id', { type: () => Int }) id: number): Promise<Owner> {
     return this.ownersService.remove(id);
   }
 }

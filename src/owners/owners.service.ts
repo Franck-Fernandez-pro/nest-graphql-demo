@@ -32,7 +32,10 @@ export class OwnersService {
     return this.ownersRepository.save(updatedOwner);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} owner`;
+  async remove(id: number): Promise<Owner> {
+    const deletedOwner = await this.ownersRepository.findOne(id);
+    await this.ownersRepository.delete(id);
+
+    return deletedOwner;
   }
 }
