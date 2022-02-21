@@ -25,8 +25,11 @@ export class OwnersService {
     return this.ownersRepository.findOneOrFail(id);
   }
 
-  update(id: number, updateOwnerInput: UpdateOwnerInput) {
-    return `This action updates a #${id} owner`;
+  async update(id: number, updateOwnerInput: UpdateOwnerInput): Promise<Owner> {
+    const updatedOwner = await this.ownersRepository.findOne(id);
+    updatedOwner.name = updateOwnerInput.name;
+
+    return this.ownersRepository.save(updatedOwner);
   }
 
   remove(id: number) {
